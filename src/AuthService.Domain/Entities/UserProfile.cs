@@ -18,5 +18,5 @@ public class UserProfile
     public string Bio { get; set; } = string.Empty;
     public DateTime DateOfBirth { get; set; }
 
-    public User user { get; set; } = null!;
+    public User User { get; set; } = null!;
 }

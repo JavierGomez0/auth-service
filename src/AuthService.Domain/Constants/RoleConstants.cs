@@ -1,4 +1,4 @@
-namespace AuthService.Domain.Constants
+namespace AuthService.Domain.Constants{
 
 public class Constants
 {
@@ -7,4 +7,5 @@ public class Constants
 
     // This array can be used to validate roles when creating or updating users
     public static readonly string[] AllowedRoles = { ADMIN_ROLE, USER_ROLE };
+}
 }
