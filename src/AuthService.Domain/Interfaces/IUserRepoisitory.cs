@@ -10,7 +10,7 @@ public interface IUserRepository{
     Task<User?> GetByPasswordResetTokenAsync(string token);
     Task<User> CreateAsync(User user);
     Task<User> UpdateAsync(User user);
-    Task<User> DeleteAsync(User user);
+    Task<bool> DeleteAsync(string id);
  
     Task<bool> ExistsByEmailAsync(string email);
     Task<bool> ExistsByUsernameAsync(string username);

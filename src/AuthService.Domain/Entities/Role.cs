@@ -1,35 +1,30 @@
 using System.ComponentModel.DataAnnotations;
-
 namespace AuthService.Domain.Entities;
-
+ 
 public class Role
 {
-    [Key] // Primary key
-    [MaxLength(16)] // Assuming a maximum length for the role ID
-    public string Id { get; set; }
-
-    [Required] // Name is required
-    [MaxLength(50)] // Assuming a maximum length for the role name
-    public string Name { get; set; }
-
-    [Required] // Description is required
-    [MaxLength(255)] // Assuming a maximum length for the role description
-    public string Description { get; set; }
-
-    // Relationships with UserRole
+    [Key]
+    [MaxLength(16)]
+    public string Id { get; set; } = string.Empty;
+ 
+    [Required(ErrorMessage = "El nombre del rol es requerido")]
+    [MaxLength(100,ErrorMessage = "El nombre del rol debe tener menos de 100 caracteres")]
+    public string Name { get; set; } = string.Empty;
+   
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+ 
+    //Relaciones con UserRole
     public ICollection<UserRole> UserRoles { get; set; }
 }
-
-// Example of predefined
-
+ 
 /*
 Roles
-+--------------+--------------+------------------+
-| Id           | Name         | Description      |
-+--------------+--------------+------------------+
-| ADMIN        | Admin        | Administrador    |
-| USER         | User         | Usuario normal   |
-| GUEST        | Guest        | Invitado         |
-+--------------+--------------+------------------+
+    +--------------+--------------+------------------+
+    | Id           | Name         | Description      |
+    +--------------+--------------+------------------+
+    | ADMIN        | Admin        | Administrador    |
+    | USER         | User         | Usuario normal   |
+    | GUEST        | Guest        | Invitado         |
+    +--------------+--------------+------------------+
 */
- 

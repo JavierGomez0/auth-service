@@ -16,7 +16,7 @@ public static class UuidGenerator
         rng.GetBytes(bytes);
 
         var result = new StringBuilder(12);
-        foreach (int i = 0; i < 12; i++)
+        for (int i = 0; i < 12; i++)
         {
             result.Append(Alphabet[bytes[i] % Alphabet.Length]);
         }
