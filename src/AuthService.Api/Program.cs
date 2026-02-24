@@ -8,8 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
  
+// CONFIGURACION DE RUTAS
+builder.Services.AddControllers();
+ 
 // CONFIGURACION DE SERVICIOS POR MEDIO DE METODOS DE EXTENSION
-builder.Services.AddAplicationServices(builder.Configuration);
+builder.Services.AddApplicationServices(builder.Configuration);
  
 var app = builder.Build();
  
@@ -21,6 +24,7 @@ if (app.Environment.IsDevelopment())
 }
  
 app.UseHttpsRedirection();
+app.MapControllers();
  
 var summaries = new[]
 {
@@ -49,13 +53,13 @@ using (var scope = app.Services.CreateScope())
     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
  
     try{
-        
-        logger.LogInformation("Iniciando la migracion a la base de datos...");
-        await context.Database.EnsureCreatedAsync();
-        logger.LogInformation("Migración completada exitosamente.");
-        await DataSeeder.SeedAsync(context);
-        logger.LogInformation("Datos iniciales cargados correctamente.");
-
+        logger.LogInformation("Iniciando migracion de la base de datos...");
+       
+        await context.Database.EnsureCreatedAsync(); // Crea la base de datos si no existe
+ 
+        logger.LogInformation("Migracion completada exitosamente.");
+        await DataSeeder.SeedAsync(context); // Seed de datos iniciales
+        logger.LogInformation("Seed de datos compleatada exitosamente.");
     } catch(Exception ex){
         logger.LogError(ex, "Error al inicializar la base de datos");
         throw; // Detener la aplicación si la inicialización falla
@@ -68,3 +72,4 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+ 
