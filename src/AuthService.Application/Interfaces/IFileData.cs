@@ -2,7 +2,8 @@ namespace AuthService.Application.Interfaces;
 
 public interface IFileData
 {
-    string FileName { get; }
+    byte[] Data { get; }
     string ContentType { get; }
-    Stream Content { get; }
+    string FileName { get; }
+    long Size { get; }
 }
