@@ -3,7 +3,7 @@ using Konscious.Security.Cryptography;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace AuthService.Application.Services;
+namespace AuthService.Application.Service;
 
 public class PasswordHashService : IPasswordHashService
 {

@@ -13,6 +13,7 @@ public class UserProfile
     [MaxLength(16)]
     [ForeignKey(nameof(User))] // This property is a foreign key that references the User entity. It establishes a relationship between the UserProfile and User entities, indicating that each UserProfile is associated with a specific User.
     public string UserId { get; set; } = string.Empty;
+    public string Phone { get; set; } = string.Empty;
 
     public string ProfilePictureUrl { get; set; } = string.Empty;
     public string Bio { get; set; } = string.Empty;

@@ -1,6 +1,6 @@
 using AuthService.Domain.Entities;
 using AuthService.Domain.Constants;
-using AuthService.Application.Services;
+using AuthService.Application.Service;
 using Microsoft.EntityFrameworkCore;
  
 namespace AuthService.Persistence.Data;
@@ -15,11 +15,11 @@ public class DataSeeder
             {
                 new() {
                     Id = UuidGenerator.GenerateRoleId(),
-                        Name = Constants.ADMIN_ROLE
+                        Name = RoleConstants.ADMIN_ROLE
                 },
                 new() {
                     Id = UuidGenerator.GenerateRoleId(),
-                        Name = Constants.USER_ROLE
+                        Name = RoleConstants.USER_ROLE
                 }
             };
  
@@ -31,7 +31,7 @@ public class DataSeeder
         if (!await context.Users.AnyAsync())
         {
             // Buscar rol admin existente
-            var adminRole = await context.Roles.FirstOrDefaultAsync(r => r.Name == Constants.ADMIN_ROLE);
+            var adminRole = await context.Roles.FirstOrDefaultAsync(r => r.Name == RoleConstants.ADMIN_ROLE);
             if (adminRole != null)
             {
                 //var passwordHasher = new PasswordHashService();

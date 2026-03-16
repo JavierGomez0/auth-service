@@ -7,11 +7,11 @@ namespace AuthService.Persistence.Repositories;
 
 public class RoleRepository(ApplicationDbContext context) : IRoleRepository
 {
-   public async Task<Role?> GetByIdAsync(string id)
+   public async Task<Role?> GetByNameAsync(string name)
    {
        return await context.Roles
        .Include(r => r.UserRoles) // Se incluye la colección de UserRoles relacionada con el rol
-       .FirstOrDefaultAsync(r => r.Name == id); // Se busca el rol por su nombre utilizando FirstOrDefaultAsync, lo que devuelve null si no se encuentra ningún rol con ese nombre
+       .FirstOrDefaultAsync(r => r.Name == name); // Se busca el rol por su nombre utilizando FirstOrDefaultAsync, lo que devuelve null si no se encuentra ningún rol con ese nombre
    }
 
    public async Task<int> CountUsersInRoleAsync(string roleName)
